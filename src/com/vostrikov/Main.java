@@ -1,5 +1,10 @@
 package com.vostrikov;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.vostrikov.Operation.*;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -9,20 +14,33 @@ public class Main {
         System.out.println("------------------------Игрушечный банк------------------------");
         System.out.println("Первоначальный баланс " + account.getBalance());
 
-        Thread client1WithdrawThread    = new WithdrawThread(account, 1000, 1);
-        Thread client2DepositThread     = new DepositThread(account, 5000, 2);
-        Thread client3DepositThread     = new DepositThread(account, 7005, 3);
-        Thread client4WithdrawThread    = new WithdrawThread(account, 20000, 4);
+        Request client1 = new Request(CREDIT, 1000);
+        Request client2 = new Request(REPAYMENT, 5000);
+        Request client3 = new Request(REPAYMENT, 7005);
+        Request client4 = new Request(CREDIT, 20000);
 
-        client1WithdrawThread.start();
-        client2DepositThread.start();
-        client3DepositThread.start();
-        client4WithdrawThread.start();
+        ArrayList<Request> clientList = new ArrayList<Request>();
+        clientList.add(client1);
+        clientList.add(client2);
+        clientList.add(client3);
+        clientList.add(client4);
 
-        client1WithdrawThread.join();
-        client2DepositThread.join();
-        client3DepositThread.join();
-        client4WithdrawThread.join();
+
+
+//        Thread client1WithdrawThread    = new WithdrawThread(account, 1000, 1);
+//        Thread client2DepositThread     = new DepositThread(account, 5000, 2);
+//        Thread client3DepositThread     = new DepositThread(account, 7005, 3);
+//        Thread client4WithdrawThread    = new WithdrawThread(account, 20000, 4);
+//
+//        client1WithdrawThread.start();
+//        client2DepositThread.start();
+//        client3DepositThread.start();
+//        client4WithdrawThread.start();
+//
+//        client1WithdrawThread.join();
+//        client2DepositThread.join();
+//        client3DepositThread.join();
+//        client4WithdrawThread.join();
 
         System.out.println(account.getBalance());
 

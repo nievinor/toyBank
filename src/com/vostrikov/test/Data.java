@@ -1,26 +1,18 @@
-package com.vostrikov;
+package com.vostrikov.test;
 
-import java.util.PriorityQueue;
-
-public class Front {
-
+public class Data {
     private String packet;
 
     // True if receiver should wait
     // False if sender should wait
     private boolean transfer = true;
-//    private Queue transfer1 = ;
 
-
-    public Front(String packet, boolean transfer) {
-        this.packet = packet;
-        this.transfer = transfer;
+    public Data() {
     }
 
-    PriorityQueue<Integer> myPriorityQueue = new PriorityQueue<Integer>(2);
-
-    public Front(PriorityQueue<Integer> myPriorityQueue) {
-        this.myPriorityQueue = myPriorityQueue;
+    public Data(String packet, boolean transfer) {
+        this.packet = packet;
+        this.transfer = transfer;
     }
 
     public synchronized void send(String packet) {
@@ -52,5 +44,4 @@ public class Front {
         notifyAll();
         return packet;
     }
-
 }
